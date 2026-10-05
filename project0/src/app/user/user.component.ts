@@ -15,10 +15,7 @@ export class UserComponent {
   get imagePath() {
     return 'assets/users/' + this.user().avatar;
   }
-  onSelectUser(userId: string): boolean {
-    if (this.user().id === userId) {
-      return true;
-    }
-    return false;
+  onSelectUser() {
+    this.select.emit(this.user().id);
   }
 }
