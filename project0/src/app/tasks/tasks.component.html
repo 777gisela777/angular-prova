@@ -1,15 +1,15 @@
-<h1>Juan's tasks</h1>
+<h1>{{ user() ? user()!.name + "'s tasks" : "Tasks" }}</h1>
 <button>Add task</button>
 <div>
-  @for (task of tasksList; track task.id) {
-    if (isSameUser(task.userId)) {
       <div>
-        <h3>{{ task.title }}</h3>
-        <p>{{ task.dueDate }}</p>
-        <p>{{ task.summary }}</p>
-        <button>Complete</button>
+        @for (task of tasksList; track task.id) {
+          @if (task.userId === user()?.id) {
+            <h3>{{ task.title }}</h3>
+            <p>{{ task.dueDate }}</p>
+            <p>{{ task.summary }}</p>
+            <button (click)="onCompleteTask(task.id)">Complete</button>
+          }
+        }
       </div>
 
-    }
-  }
 </div>

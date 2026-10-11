@@ -2,10 +2,12 @@
 <main>
   @for (user of users; track user.id) {
     <app-user 
-    [user]="user" //empieza a pintar el path, el usernanme...
-    [selected]="user.id === selectedUser?.id" //este para saber cual se ha clicado
+    [user]="user"
+    [selected]="user.id === selectedUser?.id"
     (select)="onSelectUser($event)">
     </app-user>
   }
-  <app-tasks></app-tasks>
+  <app-tasks
+      [user]="selectedUser"
+></app-tasks>
 </main>

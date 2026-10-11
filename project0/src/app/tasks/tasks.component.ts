@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { User } from '../user/user.model';
 
 @Component({
   imports: [],
@@ -7,8 +8,8 @@ import { Component } from '@angular/core';
   templateUrl: './tasks.component.html',
 })
 export class TasksComponent {
-  //user = input<string>('user');
-  //username = input<string>('username');
+  user = input<User|undefined>();
+  username = input<string>('username');
 
   tasksList = [
     {
@@ -42,5 +43,9 @@ export class TasksComponent {
   ]
 
   isSameUser() {
+  }
+
+  onCompleteTask(id: string) {
+    this.tasksList = this.tasksList.filter(task => task.id !== id);
   }
 }
